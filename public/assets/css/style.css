@@ -1,0 +1,180 @@
+
+.bgAllpage{
+    background-image: url('../imgs/background_gite.webp');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    height: 1500px; 
+    width: 100%;
+}
+
+.descriptionDescriptif{
+    margin-top: 100px;
+    color: rgb(117, 8, 99);
+    background-color: rgba(219, 218, 218, 0.625);
+}
+.descriptionDescriptif>p{
+    font-weight: bold;
+}
+.form-control{
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+.btn{
+    background-color: rgba(167, 166, 166, 0.625);
+}
+.proprio>h4{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: yellow;
+}
+.photoProfile>img{
+    width: 250px;
+    height: 250px;
+}
+span{
+    font-size: 35px;
+    font-weight: bolder;
+    color: rgb(23, 88, 56);
+    background-color: rgba(167, 166, 166, 0.625);
+}
+
+.restaurant{
+    background-image: url("../imgs/restaurantBg.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    height: 460px; 
+    width: 100%;
+    margin-top: -50px;
+}
+.restaurant>h1{
+    padding-left: 20px;
+    /* 0.5 représente l'opacité (ajustez selon vos préférences) */
+    background-color: rgba(0, 0, 0, 0.3); 
+    padding-top: 10px;
+    margin-bottom: 0px;
+}
+.service1{
+    font-size: 15px;
+    font-weight: bolder;
+    color: rgb(117, 8, 99);
+}
+.service1>p{
+    background-color: rgba(0, 0, 0, 0.3); 
+    text-align: center;
+    font-weight: bold;
+    margin: auto;
+    font-size: 17px;
+    color: rgb(203 173 26);
+}
+.service1>h2{
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3); 
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}
+.petitDejeuner>h2{
+    margin-bottom: 25px;
+    padding-top: 25px;
+    text-align: center;
+    text-decoration: double;
+    background-color: palevioletred;
+    color: #0f6980;
+}
+.petitDejeuner>img{
+    width: 472px;
+    height: 472px;
+    margin-top: 20px;
+    margin-left: 100px;
+}
+.petitDejeuner{
+    background-color: palevioletred;
+}
+.petitDejeuner>button,.btn{
+    margin-left: 730px
+}
+.dejeuner{
+    background-color:  cadetblue;
+}
+.dejeuner>h2{
+    margin-bottom: 25px;
+    padding-top: 25px;
+    text-align: center;
+    color: white;
+}
+.d-block>img{
+    width: 500px;
+    height: 500px;
+}
+.extreme{
+    background-image: url("../imgs/loisirBg.marelle.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    height: 750px; 
+    width: 100%;
+}
+.extreme>h2{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    color: rgb(167 2 2);
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.1); 
+    margin-bottom: 1px;
+}
+.douceur{
+    background-image: url("../imgs/loisirBgElico.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    height: 850px; 
+    width: 100%;
+}
+.douceur>h2{
+    padding-top: 15px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: darkseagreen;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+.douceur>h3{
+    color: darkseagreen;
+    text-align: center;
+    font-weight: bolder;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4); 
+    margin-bottom: 1px;
+}
+.detente{
+    background-image: url("../imgs/soins_et_bien_etre.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    height: 750px; 
+    width: 100%;
+}
+.detente>h2{
+    padding-top: 15px;
+    text-align: center;
+    color: orange;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.3); 
+    margin-bottom: 0px;
+}
+.detente>h3{
+    background-color: rgba(0, 0, 0, 0.3); 
+    color: orange;
+    text-align: center;
+    font-weight: bolder;
+    padding-bottom: 30px;
+    margin-bottom: 1px;
+}
+.petitDejeuner>button, .btn {
+    margin-left: 470px;
+}
+
+/*************** MEDIAQUERY ***************/
+@media(max-width: 768px){
+    .bgAllpage{
+        background-image: none;
+        background-color: black;
+    }
+}
