@@ -1,9 +1,10 @@
 <?php
-function addLink($controller, $method = "list", $id = null)
+function addLink($controller, $method = "liste", $id = null)
 {
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
     return ROOT . "$controller/$method" . ($id ? "/$id" : "");
 }
+
 
 function debug($var)
 {
@@ -12,12 +13,12 @@ function debug($var)
     echo "</pre>";
 }
 
-function d_exit($var)
+function d_die($var)
 {
     echo "<pre>";
     var_dump($var);
     echo "</pre>";
-    exit;
+    die;
 }
 
 function redirection($url)
