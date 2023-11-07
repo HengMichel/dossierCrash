@@ -6,7 +6,8 @@ class Database
 {
     // connetion à la base de données
     private $host = "localhost";
-    private $db_name = "base_project";
+    //************ a changer
+    private $db_name = "doc_crash";
     private $username = "root";
     private $password = "";
     private $connetion = null;

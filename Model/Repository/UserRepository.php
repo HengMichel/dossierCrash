@@ -11,7 +11,6 @@ class UserRepository extends BaseRepository
     {
         $requete = $this->dbConnection->prepare("SELECT * FROM user WHERE pseudo = :pseudo");
         $requete->bindParam(":pseudo", $pseudo);
-
         if ($requete->execute()) {
             if ($requete->rowCount() == 1) {
                 $requete->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\User");
@@ -23,15 +22,17 @@ class UserRepository extends BaseRepository
             return null;
         }
     }
-
     public function insertUser(User $user)
     {
-        $sql = "INSERT INTO user (pseudo, mdp, nom, prenom) VALUES (:pseudo, :mdp, :nom, :prenom)";
+        $sql = "INSERT INTO user (nom, prenom, mail, adresse, tel, mdp, anniversaire) VALUES (:nom, :prenom, :mail, :adresse,:tel,:mdp,:anniversaire)";
         $requete = $this->dbConnection->prepare($sql);
-        $requete->bindValue(":pseudo", $user->getPseudo());
-        $requete->bindValue(":mdp", $user->getMdp());
-        $requete->bindValue(":prenom", $user->getPrenom());
         $requete->bindValue(":nom", $user->getNom());
+        $requete->bindValue(":prenom", $user->getPrenom());
+        $requete->bindValue(":mail", $user->getMail());
+        $requete->bindValue(":adresse", $user->getAdresse());
+        $requete->bindValue(":tel", $user->getTel());
+        $requete->bindValue(":mdp", $user->getMdp());
+        $requete->bindValue(":anniversaire", $user->getAnniversaire());
         $requete = $requete->execute();
         if ($requete) {
             if ($requete == 1) {
@@ -44,18 +45,19 @@ class UserRepository extends BaseRepository
         Session::addMessage("danger",  "Erreur SQL");
         return null;
     }
-
-
     public function updateAbonne(User $user)
     {
         $sql = "UPDATE user 
-                         SET pseudo = :pseudo, mdp = :mdp, prenom = :prenom, nom = :nom
+                         SET nom = :nom, prenom = :prenom,  mail = :mail, adresse = :adresse, tel = :tel, mdp = :mdp, anniversaire = :anniversaire
                          WHERE id = :id";
         $requete = $this->dbConnection->prepare($sql);
-        $requete->bindValue(":pseudo", $user->getPseudo());
-        $requete->bindValue(":mdp", $user->getMdp());
-        $requete->bindValue(":prenom", $user->getPrenom());
         $requete->bindValue(":nom", $user->getNom());
+        $requete->bindValue(":prenom", $user->getPrenom());
+        $requete->bindValue(":mail", $user->getMail());
+        $requete->bindValue(":adresse", $user->getAdresse());
+        $requete->bindValue(":tel", $user->getTel());
+        $requete->bindValue(":mdp", $user->getMdp());
+        $requete->bindValue(":anniversaire", $user->getAnniversaire());
         $requete->bindValue(":id", $user->getId());
         $requete = $requete->execute();
         if ($requete) {

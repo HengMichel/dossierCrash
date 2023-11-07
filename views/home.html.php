@@ -1,3 +1,3 @@
 <div class="card-columns">
-    <p>Page d'accueil</p>
+    <p>C'est la Page home.html.php dans views</p>
 </div>
