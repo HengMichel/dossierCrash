@@ -1,4 +1,4 @@
-<p>footer</p>
+<!-- <p>footer</p> -->
 <div class="pied d-felx fa-2x modal-dialog">
 <i class="fa-brands fa-square-snapchat fa-spin fa-spin-reverse link-info"></i>
 <i class="fa-brands fa-facebook fa-beat-fade link-secondary"></i>
