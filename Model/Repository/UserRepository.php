@@ -7,21 +7,21 @@ use Service\Session;
 
 class UserRepository extends BaseRepository
 {
-    public function findByPseudo($pseudo)
-    {
-        $requete = $this->dbConnection->prepare("SELECT * FROM user WHERE pseudo = :pseudo");
-        $requete->bindParam(":pseudo", $pseudo);
-        if ($requete->execute()) {
-            if ($requete->rowCount() == 1) {
-                $requete->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\User");
-                return $requete->fetch();
-            } else {
-                return false;
-            }
-        } else {
-            return null;
-        }
-    }
+    // public function findByPseudo($pseudo)
+    // {
+    //     $requete = $this->dbConnection->prepare("SELECT * FROM user WHERE pseudo = :pseudo");
+    //     $requete->bindParam(":pseudo", $pseudo);
+    //     if ($requete->execute()) {
+    //         if ($requete->rowCount() == 1) {
+    //             $requete->setFetchMode(\PDO::FETCH_CLASS, "Model\Entity\User");
+    //             return $requete->fetch();
+    //         } else {
+    //             return false;
+    //         }
+    //     } else {
+    //         return null;
+    //     }
+    // }
     public function insertUser(User $user)
     {
         $sql = "INSERT INTO user (nom, prenom, mail, adresse, tel, mdp, anniversaire) VALUES (:nom, :prenom, :mail, :adresse,:tel,:mdp,:anniversaire)";

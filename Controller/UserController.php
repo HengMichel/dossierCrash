@@ -38,7 +38,7 @@ class UserController extends BaseController
             return redirection(addLink("home"));
         }
 
-        $errors = $this->form->getEerrorsForm();
+        $errors = $this->form->getErrorsForm();
 
         return $this->render("user/form.html.php", [
             "h1" => "Ajouter un nouvel utilisateur",

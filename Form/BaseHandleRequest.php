@@ -7,12 +7,12 @@ class BaseHandleRequest
 {
     private $errors;
 
-    public function setEerrorsForm($errors)
+    public function setErrorsForm($errors)
     {
         $this->errors = $errors;
     }
 
-    public function getEerrorsForm()
+    public function getErrorsForm()
     {
         return $this->errors;
     }

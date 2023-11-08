@@ -68,6 +68,8 @@ class UserHandleRequest extends BaseHandleRequest
                 if (strlen($adresse) > 30) {
                     $errors[] = "L'adresse ne peut avoir plus de 30 caractères";
                 }
+                $user->setAdresse($_POST['adresse']);
+
             }
             if (!empty($tel)) {
                 if (strlen($tel) < 10) {
@@ -76,6 +78,8 @@ class UserHandleRequest extends BaseHandleRequest
                 if (strlen($tel) > 30) {
                     $errors[] = "Le numéro de téléphone ne peut avoir plus de 30 caractères";
                 }
+                $user->setTel($_POST['tel']);
+
             }
             if (empty($mdp)) {
                 $errors[] = "Le mot de passe ne peut pas être vide";
@@ -83,6 +87,7 @@ class UserHandleRequest extends BaseHandleRequest
             if (empty($anniversaire)) {
                 $errors[] = "La date d'anniversaire ne peut pas être vide";
             }
+            $user->setAnniversaire($_POST['anniversaire']);
 
             if (empty($errors)) {
                 $user->setMdp(password_hash($mdp, PASSWORD_DEFAULT));
@@ -92,9 +97,18 @@ class UserHandleRequest extends BaseHandleRequest
                 return true;
             }
 
-            $this->setEerrorsForm($errors);
+            $this->setErrorsForm($errors);
         }
     }
+
+
+  
+
+
+
+
+
+
 
     public function handleUpdate($id)
     {
