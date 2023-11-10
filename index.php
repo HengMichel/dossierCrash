@@ -16,7 +16,7 @@ $classController = "Controller\\" . ucfirst($controller) . "Controller";  // ucf
 /* On peut instancier un objet en utilisant un string pour le nom de la class.
     _⚠ le nom de la class doit être dans une variable pour pouvoir utiliser 'new'
 */
-
+debug($_SESSION);
 try {
     $controller = new $classController;
     // $UserController->update($id);

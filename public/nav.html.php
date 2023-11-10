@@ -1,3 +1,7 @@
+<?php
+use Model\Entity\User;
+
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,9 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= addLink("login","login") ?>">Se connecter</a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link link-light" href="<?= addLink("login","deconnexion") ?>">Se déconnecter</a>
-                </li> -->
+                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,11 +51,17 @@
                 </li>
 
                 <?php
-                if (isset($_SESSION['user']) || (isset($_SESSION['niveau']) && $_SESSION['niveau'] === 'admin')) {
+                // if (isset($_SESSION['user']) || (isset($_SESSION['niveau']) && $_SESSION['niveau'] === 'admin')) {
+                //     echo '<li class="nav-item">';
+                //     echo '<a class="nav-link fw-bolder link-warning" href="' . addLink("login", "deconnexion") . '">Se déconnecter</a>';
+                //     echo '</li>';
+                //     }
+                if (isset($_SESSION['user']) && $_SESSION['user'] instanceof User) {
                     echo '<li class="nav-item">';
                     echo '<a class="nav-link fw-bolder link-warning" href="' . addLink("login", "deconnexion") . '">Se déconnecter</a>';
                     echo '</li>';
-                    }
+                }
+                
                 ?>
 
             </ul>

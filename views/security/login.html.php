@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-between mt-5">
-        <button type="submit" class="btn btn-primary">Se connecter</button>
         <a href="/" class="btn btn-danger">Annuler</a>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
     </div>
 </form>
