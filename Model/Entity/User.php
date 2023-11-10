@@ -158,6 +158,32 @@ class User extends BaseEntity
 
         return $this;
     }
+    
+    
+
+
+
+
+    /**
+     * Get the value of authenticate($mail, $mdp)
+     */
+    public function authenticate($mail, $mdp)
+    {
+        return $this->mail;
+        return $this->mdp;
+    }
+    /**
+     * Set the value of authenticate($mail, $mdp)
+     *
+     * @return  self
+     */
+    public function setauthenticate($mail, $mdp)
+    {
+        $this->mail = $mail;
+        $this->mdp = $mdp;
+
+        return $this;
+    }
 
 
 

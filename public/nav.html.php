@@ -24,14 +24,17 @@ use Model\Entity\User;
                     <a class="nav-link active" aria-current="page" href="<?= addLink("home") ?>">Accueil</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="<?= addLink("user","liste") ?>">Liste</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link link-light" href="<?= addLink("user","new") ?>">S'inscrire</a>
                 </li>    
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="<?= addLink("login","login") ?>">Se connecter</a>
+                    <a class="nav-link link-light" href="<?= addLink("user","log") ?>">Se connecter</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link link-light" href="<?= addLink("login","deconnexion") ?>">Se déconnecter</a>
-                </li>
+                </li> -->
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

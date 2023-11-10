@@ -12,12 +12,13 @@ class UserController extends BaseController
     private $form;
     private $user;
 
-    public function __construct()
+    public function __construct(UserRepository $userRepository, UserHandleRequest $form, User $user)
     {
-        $this->userRepository = new UserRepository;
-        $this->form = new UserHandleRequest;
-        $this->user = new User;
+        $this->userRepository = $userRepository;
+        $this->form = $form;
+        $this->user = $user;
     }
+
     public function liste()
     {
         $users = $this->userRepository->findAll($this->user);
@@ -46,7 +47,6 @@ class UserController extends BaseController
             "errors" => $errors
         ]);
     }
-
     public function edit($id)
     {
         
@@ -56,4 +56,22 @@ class UserController extends BaseController
     {
         
     }
+
+
+
+    public function log($mail, $mdp)
+    {
+        $authenticatedUser = $this->user->authenticate($mail, $mdp);
+    
+        if ($authenticatedUser) {
+            return redirection(addLink("home"));
+        } else {
+            return $this->render("security/login.html.php", [
+                "h1" => "Se connecter",
+                "user" => $this->user,
+            ]);
+        }
+    }    
+
+
 }

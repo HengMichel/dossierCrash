@@ -1,27 +1,38 @@
 <?php
 require "inc/init.inc.php";
 
-/* 
-URL: index.php?controller=user&method=update&id=32
-*/
-$controller = $_GET["controller"] ?? "home";
-$method    = $_GET["method"] ?? "liste";
-$id         = $_GET["id"] ?? null;
+use Controller\UserController;
+use Model\Repository\UserRepository;
+use Form\UserHandleRequest;
+use Model\Entity\User;
 
-$classController = "Controller\\" . ucfirst($controller) . "Controller";  // ucfirst: met la première lettre d'un string en majuscule
-/* $classController = "Controller\UserController" 
-   $method = "liste"
-*/
+// URL: index.php?controller=user&method=update&id=32
+$controllerName = $_GET["controller"] ?? "home";
+$method = $_GET["method"] ?? "liste";
+$id = $_GET["id"] ?? null;
 
-/* On peut instancier un objet en utilisant un string pour le nom de la class.
-    _⚠ le nom de la class doit être dans une variable pour pouvoir utiliser 'new'
-*/
-debug($_SESSION);
+$mail = $_GET["mail"] ?? null;
+$mdp = $_GET["mdp"] ?? null;
+
+$classController = "Controller\\" . ucfirst($controllerName) . "Controller";
+
+// Instanciation des dépendances
+$userRepository = new UserRepository();
+$userHandleRequest = new UserHandleRequest();
+$user = new User();
+
 try {
-    $controller = new $classController;
-    // $UserController->update($id);
+    // Instanciation du contrôleur en fournissant les dépendances
+    $controller = new $classController($userRepository, $userHandleRequest, $user);
 
-    $controller->$method($id);
+    // Appel de la méthode log avec les paramètres appropriés
+    if ($method === 'log') {
+        $controller->log($mail, $mdp);
+    } else {
+        // Appel de la méthode correspondante
+        $controller->$method($id);
+    }
 } catch (Exception $e) {
     echo "Erreur : " . $e->getMessage();
 }
+
