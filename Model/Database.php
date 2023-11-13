@@ -4,23 +4,23 @@ namespace Model;
 
 class Database
 {
-    // connetion à la base de données
+    // connexion à la base de données
     private $host = "localhost";
     //************ a changer
     private $db_name = "doc_crash";
     private $username = "root";
     private $password = "";
-    private $connetion = null;
+    private $connexion = null;
 
-    // getter pour la connetion
+    // getter pour la connexion
     public function bddConnect()
     {
         try {
-            $this->connetion = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->connexion = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
         } catch (\PDOException $exception) {
-            echo "Erreur de connetion : " . $exception->getMessage();
+            echo "Erreur de connexion : " . $exception->getMessage();
         }
 
-        return $this->connetion;
+        return $this->connexion;
     }
 }

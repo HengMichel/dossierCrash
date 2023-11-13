@@ -33,7 +33,8 @@ abstract class Session
 
     public static function isConnected()
     {
-        return $_SESSION["user"] ?? false;
+        // return $_SESSION["user"] ?? false;
+        return isset($_SESSION["user"]) && $_SESSION["user"];
     }
 
     public static function logout()
@@ -43,9 +44,12 @@ abstract class Session
 
     public static function isAdmin(): bool
     {
+        /**
+        * @var User|bool $user
+        */
         if ($user = self::isConnected()) {
             return $user->getNiveau() == ROLE_ADMIN;
         }
-        return false;
+        // return false;
     }
 }

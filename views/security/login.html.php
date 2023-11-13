@@ -1,16 +1,15 @@
-<form action="" method="post">
+<form action="<?= addLink("user", "new") ?>" method="post">
     <div class="row">
         <div class="form-group col-md-6">
-            <label for="mail">mail :</label>
+            <label for="mail">Mail :</label>
             <input type="email" name="mail" id="mail" class="form-control border-primary border-4 mt-3 bg-primary-subtle fw-medium">
         </div>
         <div class="form-group col-md-6">
-            <label for="mdp">Mot de passe</label>
-            <input type="" name="mdp" id="mdp" class="form-control border-primary border-4 mt-3 bg-primary-subtle fw-medium">
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" name="mdp" id="mdp" class="form-control border-primary border-4 mt-3 bg-primary-subtle fw-medium">
         </div>
     </div>
     <div class="d-flex justify-content-between mt-5">
-        <a href="/" class="btn btn-danger">Annuler</a>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <button type="submit"  name="submit" class="btn btn-light border-danger link-primary border-3 fw-medium text-decoration-none">Soumettre</button>
     </div>
 </form>

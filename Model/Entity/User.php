@@ -165,25 +165,23 @@ class User extends BaseEntity
 
 
     /**
-     * Get the value of authenticate($mail, $mdp)
-     */
+    * Authenticate the user based on email and password.
+    *
+    * @param string $mail
+    * @param string $mdp
+    * @return User|false Return the authenticated user or false if authentication fails.
+    */
     public function authenticate($mail, $mdp)
     {
-        return $this->mail;
-        return $this->mdp;
+        // Comparer le mail du formulaire avec celui de l'objet User
+        if ($mail === $this->getMail() && password_verify($mdp, $this->getMdp())) {
+            // L'utilisateur est authentifié
+            return $this;
+        }
+        // Échec de l'authentification
+        return false;
     }
-    /**
-     * Set the value of authenticate($mail, $mdp)
-     *
-     * @return  self
-     */
-    public function setauthenticate($mail, $mdp)
-    {
-        $this->mail = $mail;
-        $this->mdp = $mdp;
 
-        return $this;
-    }
 
 
 

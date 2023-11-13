@@ -1,10 +1,12 @@
 <?php
+
 require "inc/init.inc.php";
 
 use Controller\UserController;
 use Model\Repository\UserRepository;
 use Form\UserHandleRequest;
 use Model\Entity\User;
+
 
 // URL: index.php?controller=user&method=update&id=32
 $controllerName = $_GET["controller"] ?? "home";
@@ -18,7 +20,7 @@ $classController = "Controller\\" . ucfirst($controllerName) . "Controller";
 
 // Instanciation des dépendances
 $userRepository = new UserRepository();
-$userHandleRequest = new UserHandleRequest();
+$userHandleRequest = new UserHandleRequest($userRepository);
 $user = new User();
 
 try {

@@ -10,10 +10,15 @@ class UserHandleRequest extends BaseHandleRequest
 {
     private $userRepository;
 
-    public function __construct()
+        // public function __construct()
+        // {
+        //     $this->userRepository  = new UserRepository;
+        // }
+    public function __construct(UserRepository $userRepository)
     {
-        $this->userRepository  = new UserRepository;
+        $this->userRepository = $userRepository;
     }
+
 
     public function handleForm(User $user)
     {
@@ -29,6 +34,7 @@ class UserHandleRequest extends BaseHandleRequest
                 if (strlen($nom) > 30) {
                     $errors[] = "Le nom ne peut avoir plus de 30 caractères";
                 }
+                $user->setNom($_POST['nom']);
             }
             if (!empty($prenom)) {
                 if (strlen($prenom) < 2) {
@@ -37,6 +43,7 @@ class UserHandleRequest extends BaseHandleRequest
                 if (strlen($prenom) > 30) {
                     $errors[] = "Le prénom ne peut avoir plus de 30 caractères";
                 }
+                $user->setPrenom($_POST['prenom']);
             }
              // Vérification de la validité du formulaire
              if (empty($mail)) {
@@ -52,6 +59,7 @@ class UserHandleRequest extends BaseHandleRequest
             if (!strpos($mail, " ") === false) {
                 $errors[] = "Les espaces ne sont pas autorisés pour le mail";
             }
+            $user->setMail($_POST['mail']);
 
             // Est-ce que le mail existe déjà dans la bdd ?
 
