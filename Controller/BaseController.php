@@ -15,12 +15,18 @@ abstract class BaseController
         include "public/footer.html.php";
     }
 
+    public function redirect($url)
+    {
+        header("Location: $url");
+        exit();
+    }
+
     public function getUser()
     {
         $user = Session::isConnected();
 
         if (!$user) {
-            redirection("/error/403.php");
+            $this->redirect("/error/403.php");
         }
         return $user;
     }
@@ -30,7 +36,7 @@ abstract class BaseController
         $user = Session::isAdmin();
 
         if (!$user) {
-            redirection("/error/403.php");
+            $this->redirect("/error/403.php");
         }
         return $user;
     }

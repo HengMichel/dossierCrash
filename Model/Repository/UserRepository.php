@@ -71,4 +71,38 @@ class UserRepository extends BaseRepository
         Session::addMessage("danger",  "Erreur SQL");
         return null;
     }
+
+    public function validateLogin(User $user) {
+        $sql= "SELECT `mail`, `mdp` FROM `user`  WHERE `mail` = :mail";
+        $requete = $this->dbConnection->prepare($sql);
+        $requete->bindValue(":mail", $user->getMail());
+        // $requete->bindValue(":mdp", $user->getMdp());
+        $requete->execute();
+
+        // Vérifiez si la requête s'est exécutée avec succès
+        if ($requete) {
+            // Vérifiez si l'utilisateur existe en comptant les lignes affectées
+            if ($requete == 1) {
+                $result = $requete->fetch();
+
+            // Vérifiez le mot de passe
+            if (password_verify($user->getMdp(), $result['mdp'])) {
+                Session::addMessage("success",  "La connexion a bien été éffectuée");
+                return true;
+            // ou false selon la réussite ou l'échec
+            } else {
+            Session::addMessage("danger", "Mot de passe incorrect");
+            return false;
+
+            }
+        } else {
+            Session::addMessage("danger",  "Identifiant incorrect");
+            return false;
+            }
+        } else {
+            Session::addMessage("danger", "Erreur SQL");
+            return false; // Retourne false en cas d'erreur SQL
+            }
+
+        }
 }

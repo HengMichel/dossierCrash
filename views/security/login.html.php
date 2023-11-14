@@ -10,6 +10,6 @@
         </div>
     </div>
     <div class="d-flex justify-content-between mt-5">
-        <button type="submit"  name="submit" class="btn btn-light border-danger link-primary border-3 fw-medium text-decoration-none">Soumettre</button>
+        <button type="submit" name="login" class="btn btn-light border-danger link-primary border-3 fw-medium text-decoration-none">Soumettre</button>
     </div>
 </form>

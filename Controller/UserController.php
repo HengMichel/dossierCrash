@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Service\Session;
 use Model\Entity\User;
 use Form\UserHandleRequest;
 use Controller\BaseController;
@@ -37,7 +38,7 @@ class UserController extends BaseController
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
             $this->userRepository->insertUser($user);
-            return redirection(addLink("home"));
+            return $this->redirect(addLink("home"));
         }
 
         $errors = $this->form->getErrorsForm();
@@ -51,16 +52,11 @@ class UserController extends BaseController
   
     public function log($mail, $mdp)
     {
-        // Créez une nouvelle instance de l'entité User
-        $user = new \Model\Entity\User(); 
-
-        $authenticatedUser = $user->authenticate($mail, $mdp);
+        $authenticatedUser = $this->simulateAuthenticate($mail, $mdp);
 
         if ($authenticatedUser) {
-            \Service\Session::authentication($authenticatedUser);
-
-            return redirection(addLink("home"));
-            // echo "Redirecting to home...";
+            Session::authentication($authenticatedUser);
+            $this->redirect("home");
         } else {
             return $this->render("security/login.html.php", [
                 "h1" => "Se connecter",
@@ -71,10 +67,10 @@ class UserController extends BaseController
 
     public function logout()
     {
-        \Service\Session::logout();
+        Session::logout();
         // Rediriger vers la page d'accueil ou une autre page
-        header("Location: index.html.php");
-        exit();
+        $this->redirect("index.html.php");
+
     }
 
     public function handleForm()
@@ -97,7 +93,17 @@ class UserController extends BaseController
             }
     }
 
+    private function simulateAuthentication($mail, $mdp)
+    {
+        // Vous devrez implémenter la logique d'authentification ici
+        // Cela peut impliquer la vérification des informations d'authentification dans la base de données, par exemple.
+        // Pour l'instant, nous retournons simplement un utilisateur simulé.
+        $simulatedUser = new User();
+        $simulatedUser->setMail($mail);
+        $simulatedUser->setMdp($mdp); // Note: Cela ne doit pas être fait dans un système réel, c'est une simulation.
 
+        return $simulatedUser;
+    }
 
 
 

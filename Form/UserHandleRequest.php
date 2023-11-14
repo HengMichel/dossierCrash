@@ -55,15 +55,12 @@ class UserHandleRequest extends BaseHandleRequest
             if (strlen($mail) > 20) {
                 $errors[] = "Le mail ne peut avoir plus de 20 caractères";
             }
-
             if (!strpos($mail, " ") === false) {
                 $errors[] = "Les espaces ne sont pas autorisés pour le mail";
             }
             $user->setMail($_POST['mail']);
 
             // Est-ce que le mail existe déjà dans la bdd ?
-
-            // $requete = $this->userRepository->findBymail($mail);
             $requete = $this->userRepository->findByAttributes($user, ["mail" => $mail]);
             if ($requete) {
                 $errors[] = "Le mail existe déjà, veuillez en choisir un nouveau";
@@ -77,7 +74,6 @@ class UserHandleRequest extends BaseHandleRequest
                     $errors[] = "L'adresse ne peut avoir plus de 30 caractères";
                 }
                 $user->setAdresse($_POST['adresse']);
-
             }
             if (!empty($tel)) {
                 if (strlen($tel) < 10) {
@@ -87,7 +83,6 @@ class UserHandleRequest extends BaseHandleRequest
                     $errors[] = "Le numéro de téléphone ne peut avoir plus de 30 caractères";
                 }
                 $user->setTel($_POST['tel']);
-
             }
             if (empty($mdp)) {
                 $errors[] = "Le mot de passe ne peut pas être vide";
@@ -104,9 +99,27 @@ class UserHandleRequest extends BaseHandleRequest
                 $user->setPrenom($prenom);
                 return true;
             }
-
             $this->setErrorsForm($errors);
         }
+
+        if (isset($_POST['login'])) {
+            // Récupérer les données du formulaire
+            $mail = $_POST['mail'];
+            $mdp = $_POST['mdp'];
+    
+            // Vérifier les identifiants dans la base de données
+            $userFromDB = $this->userRepository->findByAttributes($user, ["mail" => $mail]);
+    
+            if ($userFromDB && password_verify($mdp, $userFromDB->getMdp())) {
+                // Connexion réussie
+                // ... effectuer les actions nécessaires (par exemple, définir une session) ...
+                return true;
+            } else {
+                // Identifiants incorrects
+                $this->setErrorsForm(["Identifiants incorrects"]);
+            }
+        }
+        return false;
     }
 
 
