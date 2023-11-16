@@ -50,19 +50,13 @@ class UserController extends BaseController
         ]);
     }
   
-    public function log($mail, $mdp)
+    public function login()
     {
-        $authenticatedUser = $this->simulateAuthenticate($mail, $mdp);
 
-        if ($authenticatedUser) {
-            Session::authentication($authenticatedUser);
-            $this->redirect("home");
-        } else {
             return $this->render("security/login.html.php", [
                 "h1" => "Se connecter",
                 "user" => $this->user,
             ]);
-        }
     }    
 
     public function logout()
