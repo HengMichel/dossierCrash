@@ -60,7 +60,7 @@ class BaseRepository
                 return $result;
             }
         } catch (\PDOException $exception) {
-            echo "Erreur de connexion : " . $exception->getMessage();
+            echo "Erreur de connetion : " . $exception->getMessage();
         }
     }
 

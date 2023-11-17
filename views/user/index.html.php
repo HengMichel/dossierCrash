@@ -2,12 +2,9 @@
     <thead class="thead-dark">
         <th>ID</th>
         <th>Niveau</th>
-        <th>Identité</th>
-        <th>Mail</th>
-        <th>Adresse</th>
-        <th>Tel</th>
+        <th>Pseudo</th>
         <th>Mot de passe</th>
-        <th>Anniversaire</th>
+        <th>Identité</th>
         <th>Actions</th>
     </thead>
     <tbody>
@@ -16,6 +13,7 @@
                 <td>
                     <?= $user->getId() ?>
                 </td>
+
                 <td>
                     <?php
                     switch ($user->getNiveau()):
@@ -28,23 +26,17 @@
                     endswitch;
                     ?>
                 </td>
+
                 <td>
-                    <?= $user->getPrenom() . " " . $user->getNom() ?>
+                    <?= $user->getPseudo() ?>
                 </td>
-                <td>
-                    <?= $user->getMail() ?>
-                </td>
-                <td>
-                    <?= $user->getAdresse() ?>
-                </td>
-                <td>
-                    <?= $user->getTel() ?>
-                </td>
+
                 <td>
                     <?= $user->getMdp() ? "****" : "" ?>
                 </td>
+
                 <td>
-                    <?= $user->getAnniversaire() ?>
+                    <?= $user->getPrenom() . " " . $user->getNom() ?>
                 </td>
 
                 <td>
@@ -57,6 +49,7 @@
                     <a href="<?= addLink("user", "fiche", $user->getId()) ?>" class="btn btn-secondary">
                         <i class="fa fa-eye"></i>
                     </a>
+
                 </td>
             </tr>
         <?php endforeach; ?>

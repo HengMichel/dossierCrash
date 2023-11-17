@@ -1,12 +1,8 @@
 <?php
 function addLink($controller, $method = "liste", $id = null)
 {
-    // Remplacez "nomDeVotreProjet" par le nom de votre projet
-    $projectPath = "/dossierCrash";
-    return $projectPath . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
-
     // return ROOT . "?controller=$controller&method=$method" . ($id ? "&id=$id" : "");
-    // return ROOT . "$controller/$method" . ($id ? "/$id" : "");
+    return ROOT . "$controller/$method" . ($id ? "/$id" : "");
 }
 
 

@@ -2,11 +2,9 @@
 
 namespace Controller;
 
-use Service\Session;
 use Model\Entity\User;
-use Form\UserHandleRequest;
-use Controller\BaseController;
 use Model\Repository\UserRepository;
+use Form\UserHandleRequest;
 
 class UserController extends BaseController
 {
@@ -14,13 +12,12 @@ class UserController extends BaseController
     private $form;
     private $user;
 
-    public function __construct(UserRepository $userRepository, UserHandleRequest $form, User $user)
+    public function __construct()
     {
-        $this->userRepository = $userRepository;
-        $this->form = $form;
-        $this->user = $user;
+        $this->userRepository = new UserRepository;
+        $this->form = new UserHandleRequest;
+        $this->user = new User;
     }
-
     public function liste()
     {
         $users = $this->userRepository->findAll($this->user);
@@ -34,14 +31,14 @@ class UserController extends BaseController
     public function new()
     {
         $user = $this->user;
-        $this->form->handleForm($user); 
+        $this->form->handleForm($user);
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
             $this->userRepository->insertUser($user);
-            return $this->redirect(addLink("home"));
+            return redirection(addLink("home"));
         }
 
-        $errors = $this->form->getErrorsForm();
+        $errors = $this->form->getEerrorsForm();
 
         return $this->render("user/form.html.php", [
             "h1" => "Ajouter un nouvel utilisateur",
@@ -49,57 +46,6 @@ class UserController extends BaseController
             "errors" => $errors
         ]);
     }
-  
-    public function login()
-    {
-
-            return $this->render("security/login.html.php", [
-                "h1" => "Se connecter",
-                "user" => $this->user,
-            ]);
-    }    
-
-    public function logout()
-    {
-        Session::logout();
-        // Rediriger vers la page d'accueil ou une autre page
-        $this->redirect("index.html.php");
-
-    }
-
-    public function handleForm()
-    {
-        // Passer l'instance de UserRepository à UserHandleRequest
-        $userHandleRequest = new UserHandleRequest($this->userRepository);
-        // Utilise la même instance de UserHandleRequest créée dans la méthode 'new'
-        $user = $this->user;
-        $this->form->handleForm($user);
-        if ($this->form->isSubmitted() && $this->form->isValid()) {
-            $this->userRepository->insertUser($user);
-            return redirection(addLink("home"));
-            } else {
-                $errors = $this->form->getErrorsForm();
-                $this->render('user/form.html.php', [
-                    'h1' => 'Ajouter un nouvel utilisateur',
-                    'user' => $user,
-                    'errors' => $errors
-                ]);
-            }
-    }
-
-    private function simulateAuthentication($mail, $mdp)
-    {
-        // Vous devrez implémenter la logique d'authentification ici
-        // Cela peut impliquer la vérification des informations d'authentification dans la base de données, par exemple.
-        // Pour l'instant, nous retournons simplement un utilisateur simulé.
-        $simulatedUser = new User();
-        $simulatedUser->setMail($mail);
-        $simulatedUser->setMdp($mdp); // Note: Cela ne doit pas être fait dans un système réel, c'est une simulation.
-
-        return $simulatedUser;
-    }
-
-
 
     public function edit($id)
     {
@@ -110,5 +56,13 @@ class UserController extends BaseController
     {
         
     }
+      
+    public function login()
+    {
 
+            return $this->render("security/login.html.php", [
+                "h1" => "Se connecter",
+                "user" => $this->user,
+            ]);
+    } 
 }
