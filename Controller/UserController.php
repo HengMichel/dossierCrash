@@ -60,9 +60,25 @@ class UserController extends BaseController
     public function login()
     {
 
-            return $this->render("security/login.html.php", [
-                "h1" => "Se connecter",
+        return $this->render("security/login.html.php", [
+         "h1" => "Se connecter",
                 "user" => $this->user,
-            ]);
+        ]);
     } 
+
+    public function handleSecurity()
+    {
+        $user = $this->userRepository->findByAttributes($this->user);
+
+        return $this->render("user/index.html.php", [
+            "h1" => "vous êtes connecté",
+                   "user" =>$user,
+           ]);
+           
+            return $this->render("security/login.html.php", [
+                "h1" => "vous n'êtes connecté",
+                       "user" => $user,
+               ]);
+           
+    }
 }

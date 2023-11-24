@@ -86,21 +86,47 @@ class UserHandleRequest extends BaseHandleRequest
     //         User::UserById($idUser);
     //     }
     // }
-    public function handleSecurity($mail,$mdp)
-    {
-        if (isset($_POST['submit'])) {
-            $mail = htmlspecialchars($_POST['mail']);
-            $mdp = htmlspecialchars($_POST['mdp']);
+    // public function handleSecurity($mail,$mdp)
+    // {
+    //     if (isset($_POST['submit'])) {
+    //         $mail = htmlspecialchars($_POST['mail']);
+    //         $mdp = htmlspecialchars($_POST['mdp']);
         
             // appeler la methode isConnected de la classe User
-            Session::isConnected($mail,$mdp);
+            // Session::isConnected($mail,$mdp);
             // cette syntaxe uniquement pour appeler les méthodes static.
             // la méthode isConnected étant static donc on utilise le nom de la classe suivi de "::" ensuite le nom de la méthode qui est isConnected .
    
-        }
-        debug($_SESSION);
+        // }
+        // debug($_SESSION);
 
-        d_die($_SESSION);
+        // d_die($_SESSION);
         
+    // }
+
+    public function handleSecurity($mail, $mdp)
+    {
+    if (isset($_POST['submit'])) {
+        // Validez les données du formulaire
+
+        // Vérifiez les informations d'identification dans la base de données
+        $user = $this->userRepository->findByAttributes(["mail" => $mail]);
+        if ($user && password_verify($mdp, $user->getMdp())) {
+            // Informations d'identification correctes
+
+            // Activez la session utilisateur
+            session_start();
+            $_SESSION['user_id'] = $user->getId();
+            $_SESSION['user_mail'] = $user->getMail();
+
+            // Redirigez l'utilisateur vers la page d'accueil ou le tableau de bord
+            header('Location: index.php'); // Changez index.php par le chemin de votre page principale
+            exit();
+        } else {
+            // Informations d'identification incorrectes, affichez un message d'erreur
+            echo "Identifiants incorrects.";
+        }
     }
+}
+
 }
