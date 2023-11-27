@@ -122,11 +122,11 @@ class UserHandleRequest extends BaseHandleRequest
             // Redirigez l'utilisateur vers la page d'accueil ou le tableau de bord
             header('Location: index.php'); // Changez index.php par le chemin de votre page principale
             exit();
-        } else {
-            // Informations d'identification incorrectes, affichez un message d'erreur
-            echo "Identifiants incorrects.";
+            } else {
+                // Informations d'identification incorrectes, affichez un message d'erreur
+                echo "Identifiants incorrects.";
+            }
         }
     }
-}
 
 }
