@@ -70,7 +70,7 @@ class UserController extends BaseController
     {
         $user = $this->userRepository->findByAttributes($this->user);
 
-        return $this->render("user/index.html.php", [
+        return $this->render("home.html.php", [
             "h1" => "vous êtes connecté",
                    "user" =>$user,
            ]);
@@ -80,5 +80,13 @@ class UserController extends BaseController
                        "user" => $user,
                ]);
            
+    }
+    public function checkLoginStatus() {
+        // Vérifiez si l'utilisateur est connecté
+        if (isset($_SESSION['user_id'])) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
